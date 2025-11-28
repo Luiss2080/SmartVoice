@@ -1,0 +1,63 @@
+/* Campaigns Show Styles */
+.show-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.audio-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.audio-count-pill {
+    background: #eef0ff;
+    color: var(--primary-color);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.empty-audios {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-light);
+    background: #f9f9f9;
+    border-radius: 12px;
+}
+
+.info-section {
+    margin-bottom: 15px;
+}
+
+.info-label {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    display: block;
+}
+
+.info-value {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.info-desc {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #555;
+}
+
+.upload-helper {
+    color: var(--text-light);
+    display: block;
+    margin-top: 5px;
+}
+
+@media (max-width: 992px) {
+    .show-grid {
+        grid-template-columns: 1fr;
+    }
+}

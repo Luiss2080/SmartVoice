@@ -4,7 +4,7 @@
 @section('header', 'Calendario de Eventos')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/calendar.css') }}">
+    @vite(['resources/css/calendar.css'])
 @endpush
 
 @section('content')
