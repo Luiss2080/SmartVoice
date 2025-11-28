@@ -58,7 +58,11 @@
                         </td>
                         <td class="table-cell">
                             <div class="campaign-dates">
-                                {{ $campana->fecha_inicio->format('d/m/Y') }} - {{ $campana->fecha_fin->format('d/m/Y') }}
+                                @if($campana->fecha_inicio && $campana->fecha_fin)
+                                    {{ $campana->fecha_inicio->format('d/m/Y') }} - {{ $campana->fecha_fin->format('d/m/Y') }}
+                                @else
+                                    <span class="text-muted">Sin fechas</span>
+                                @endif
                             </div>
                         </td>
                         <td class="table-cell">
