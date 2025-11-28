@@ -19,4 +19,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/calendario/store', [App\Http\Controllers\CalendarController::class, 'store'])->name('calendario.store');
     Route::put('/calendario/update/{id}', [App\Http\Controllers\CalendarController::class, 'update'])->name('calendario.update');
     Route::delete('/calendario/{id}', [App\Http\Controllers\CalendarController::class, 'destroy'])->name('calendario.destroy');
+
+    // Campaign Routes
+    Route::resource('campanas', App\Http\Controllers\CampanaController::class);
+    Route::post('/campanas/{id}/audios', [App\Http\Controllers\CampanaController::class, 'uploadAudio'])->name('campanas.uploadAudio');
 });
