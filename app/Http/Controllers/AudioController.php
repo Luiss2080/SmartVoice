@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Audio;
+
 class AudioController extends Controller
 {
     public function index()
     {
-        return view('modulos.audios.index');
+        $audios = Audio::all();
+        return view('modulos.audios.index', compact('audios'));
     }
 }
