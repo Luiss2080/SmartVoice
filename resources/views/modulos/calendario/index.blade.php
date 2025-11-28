@@ -3,16 +3,20 @@
 @section('title', 'Calendario - SmartVoice')
 @section('header', 'Calendario de Eventos')
 
+@push('styles')
+    <link rel="stylesheet" href="{{ asset('css/calendar.css') }}">
+@endpush
+
 @section('content')
 <div class="card">
-    <div class="card-body" style="padding: 20px;">
+    <div class="card-body calendar-card-body">
         <div class="calendar-header">
             <div class="calendar-controls">
                 <button id="prevMonth" class="btn-icon"><i class="fa-solid fa-chevron-left"></i></button>
                 <h2 id="currentMonthYear" class="calendar-title"></h2>
                 <button id="nextMonth" class="btn-icon"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
-            <div style="display: flex; gap: 10px;">
+            <div class="calendar-actions">
                 <select id="eventFilter" class="filter-select">
                     <option value="all">Todos</option>
                     <option value="#5d5fef">Principal</option>
@@ -82,7 +86,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="deleteEventBtn" class="btn btn-danger" style="display: none;">Eliminar</button>
-                    <div style="display: flex; gap: 10px;">
+                    <div class="modal-actions">
                         <button type="button" class="btn btn-secondary close-modal-btn">Cancelar</button>
                         <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
@@ -92,5 +96,7 @@
     </div>
 </div>
 
-<script src="{{ asset('js/calendar.js') }}"></script>
+@push('scripts')
+    <script src="{{ asset('js/calendar.js') }}"></script>
+@endpush
 @endsection
