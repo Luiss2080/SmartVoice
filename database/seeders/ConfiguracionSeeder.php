@@ -12,6 +12,11 @@ class ConfiguracionSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        DB::table('configuraciones')->insert([
+            ['clave' => 'reproductor_autoplay', 'valor' => 'true', 'created_at' => now(), 'updated_at' => now()],
+            ['clave' => 'reproductor_loop', 'valor' => 'false', 'created_at' => now(), 'updated_at' => now()],
+            ['clave' => 'volumen_defecto', 'valor' => '80', 'created_at' => now(), 'updated_at' => now()],
+            ['clave' => 'tema_oscuro', 'valor' => 'true', 'created_at' => now(), 'updated_at' => now()],
+        ]);
     }
 }
