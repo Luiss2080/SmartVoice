@@ -12,7 +12,17 @@
                 <h2 id="currentMonthYear" class="calendar-title"></h2>
                 <button id="nextMonth" class="btn-icon"><i class="fa-solid fa-chevron-right"></i></button>
             </div>
-            <button id="todayBtn" class="btn btn-secondary">Hoy</button>
+            <div style="display: flex; gap: 10px;">
+                <select id="eventFilter" class="filter-select">
+                    <option value="all">Todos</option>
+                    <option value="#5d5fef">Principal</option>
+                    <option value="#ff6b6b">Urgente</option>
+                    <option value="#2ecc71">Completado</option>
+                    <option value="#f1c40f">Pendiente</option>
+                    <option value="#9b59b6">Otro</option>
+                </select>
+                <button id="todayBtn" class="btn btn-secondary">Hoy</button>
+            </div>
         </div>
 
         <div class="calendar-grid-header">
@@ -34,12 +44,13 @@
 <div id="eventModal" class="modal">
     <div class="modal-content">
         <div class="modal-header">
-            <h3>Nuevo Evento</h3>
+            <h3 id="modalTitle">Nuevo Evento</h3>
             <span class="close-modal">&times;</span>
         </div>
         <div class="modal-body">
             <form id="eventForm">
                 @csrf
+                <input type="hidden" id="eventId" name="id">
                 <div class="form-group">
                     <label for="eventTitle">Título</label>
                     <input type="text" id="eventTitle" name="titulo" class="form-control" required>
@@ -70,8 +81,11 @@
                     <input type="hidden" id="eventColor" name="color" value="#5d5fef">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary close-modal-btn">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" id="deleteEventBtn" class="btn btn-danger" style="display: none;">Eliminar</button>
+                    <div style="display: flex; gap: 10px;">
+                        <button type="button" class="btn btn-secondary close-modal-btn">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
                 </div>
             </form>
         </div>

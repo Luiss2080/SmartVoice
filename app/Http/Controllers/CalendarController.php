@@ -37,6 +37,26 @@ class CalendarController extends Controller
         return response()->json($evento);
     }
 
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'titulo' => 'required|string|max:255',
+            'fecha_inicio' => 'required|date',
+            'fecha_fin' => 'nullable|date|after_or_equal:fecha_inicio',
+        ]);
+
+        $evento = \App\Models\Evento::where('user_id', auth()->id())->findOrFail($id);
+        $evento->update([
+            'titulo' => $request->titulo,
+            'descripcion' => $request->descripcion,
+            'fecha_inicio' => $request->fecha_inicio,
+            'fecha_fin' => $request->fecha_fin,
+            'color' => $request->color ?? $evento->color,
+        ]);
+
+        return response()->json($evento);
+    }
+
     public function destroy($id)
     {
         $evento = \App\Models\Evento::where('user_id', auth()->id())->findOrFail($id);

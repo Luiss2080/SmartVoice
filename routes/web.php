@@ -17,5 +17,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/calendario', [App\Http\Controllers\CalendarController::class, 'index'])->name('calendario.index');
     Route::get('/calendario/events', [App\Http\Controllers\CalendarController::class, 'getEvents'])->name('calendario.events');
     Route::post('/calendario/store', [App\Http\Controllers\CalendarController::class, 'store'])->name('calendario.store');
+    Route::put('/calendario/update/{id}', [App\Http\Controllers\CalendarController::class, 'update'])->name('calendario.update');
     Route::delete('/calendario/{id}', [App\Http\Controllers\CalendarController::class, 'destroy'])->name('calendario.destroy');
 });

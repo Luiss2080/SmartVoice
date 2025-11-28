@@ -4,19 +4,26 @@ document.addEventListener("DOMContentLoaded", function () {
     const prevMonthBtn = document.getElementById("prevMonth");
     const nextMonthBtn = document.getElementById("nextMonth");
     const todayBtn = document.getElementById("todayBtn");
+    const eventFilter = document.getElementById("eventFilter");
 
     // Modal elements
     const modal = document.getElementById("eventModal");
+    const modalTitle = document.getElementById("modalTitle");
     const closeModal = document.querySelector(".close-modal");
     const closeModalBtn = document.querySelector(".close-modal-btn");
     const eventForm = document.getElementById("eventForm");
+    const eventIdInput = document.getElementById("eventId");
+    const eventTitleInput = document.getElementById("eventTitle");
+    const eventDescInput = document.getElementById("eventDesc");
     const eventStartInput = document.getElementById("eventStart");
     const eventEndInput = document.getElementById("eventEnd");
     const colorOptions = document.querySelectorAll(".color-option");
     const colorInput = document.getElementById("eventColor");
+    const deleteEventBtn = document.getElementById("deleteEventBtn");
 
     let currentDate = new Date();
     let events = [];
+    let currentFilter = "all";
 
     // Fetch events from server
     function fetchEvents() {
@@ -72,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 year === today.getFullYear();
             const dayDiv = createDayElement(i, isToday ? "today" : "");
 
-            // Add click event to open modal
+            // Add click event to open modal for new event
             dayDiv.addEventListener("click", (e) => {
                 if (
                     e.target === dayDiv ||
@@ -85,11 +92,13 @@ document.addEventListener("DOMContentLoaded", function () {
             // Render events for this day
             const dayEvents = events.filter((event) => {
                 const eventDate = new Date(event.fecha_inicio);
-                return (
+                const matchesDate =
                     eventDate.getDate() === i &&
                     eventDate.getMonth() === month &&
-                    eventDate.getFullYear() === year
-                );
+                    eventDate.getFullYear() === year;
+                const matchesFilter =
+                    currentFilter === "all" || event.color === currentFilter;
+                return matchesDate && matchesFilter;
             });
 
             dayEvents.forEach((event) => {
@@ -98,12 +107,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 eventPill.style.backgroundColor = event.color;
                 eventPill.textContent = event.titulo;
                 eventPill.title = event.titulo;
+
+                // Edit event on click
                 eventPill.addEventListener("click", (e) => {
                     e.stopPropagation();
-                    alert(
-                        `Evento: ${event.titulo}\n${event.descripcion || ""}`
-                    );
+                    openEditModal(event);
                 });
+
                 dayDiv.appendChild(eventPill);
             });
 
@@ -128,6 +138,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Modal Logic
     function openModal(date) {
+        modalTitle.textContent = "Nuevo Evento";
+        eventIdInput.value = "";
+        deleteEventBtn.style.display = "none";
+        eventForm.reset();
+
+        // Set default color
+        selectColor("#5d5fef");
+
         // Format date for datetime-local input (YYYY-MM-DDTHH:mm)
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -140,6 +158,35 @@ document.addEventListener("DOMContentLoaded", function () {
         eventEndInput.value = dateString;
 
         modal.classList.add("show");
+    }
+
+    function openEditModal(event) {
+        modalTitle.textContent = "Editar Evento";
+        eventIdInput.value = event.id;
+        eventTitleInput.value = event.titulo;
+        eventDescInput.value = event.descripcion || "";
+        eventStartInput.value = event.fecha_inicio.substring(0, 16); // Format YYYY-MM-DDTHH:mm
+        eventEndInput.value = event.fecha_fin
+            ? event.fecha_fin.substring(0, 16)
+            : "";
+
+        selectColor(event.color);
+
+        deleteEventBtn.style.display = "block";
+        deleteEventBtn.onclick = () => deleteEvent(event.id);
+
+        modal.classList.add("show");
+    }
+
+    function selectColor(color) {
+        colorOptions.forEach((opt) => opt.classList.remove("selected"));
+        const selectedOption = Array.from(colorOptions).find(
+            (opt) => opt.dataset.color === color
+        );
+        if (selectedOption) {
+            selectedOption.classList.add("selected");
+        }
+        colorInput.value = color;
     }
 
     function closeModalFunc() {
@@ -178,15 +225,28 @@ document.addEventListener("DOMContentLoaded", function () {
         renderCalendar();
     });
 
-    // Submit Event
+    // Filter
+    eventFilter.addEventListener("change", (e) => {
+        currentFilter = e.target.value;
+        renderCalendar();
+    });
+
+    // Submit Event (Create or Update)
     eventForm.addEventListener("submit", (e) => {
         e.preventDefault();
 
         const formData = new FormData(eventForm);
         const data = Object.fromEntries(formData.entries());
+        const id = eventIdInput.value;
 
-        fetch("/calendario/store", {
-            method: "POST",
+        const url = id ? `/calendario/update/${id}` : "/calendario/store";
+        const method = id ? "PUT" : "POST";
+
+        // For PUT/PATCH we need to send JSON, but fetch body with FormData is multipart/form-data
+        // Laravel handles JSON better for API-like calls
+
+        fetch(url, {
+            method: method,
             headers: {
                 "Content-Type": "application/json",
                 "X-CSRF-TOKEN": document.querySelector('input[name="_token"]')
@@ -195,13 +255,42 @@ document.addEventListener("DOMContentLoaded", function () {
             body: JSON.stringify(data),
         })
             .then((response) => response.json())
-            .then((event) => {
-                events.push(event);
+            .then((savedEvent) => {
+                if (id) {
+                    // Update existing event in array
+                    const index = events.findIndex((e) => e.id == id);
+                    if (index !== -1) events[index] = savedEvent;
+                } else {
+                    // Add new event
+                    events.push(savedEvent);
+                }
                 renderCalendar();
                 closeModalFunc();
             })
             .catch((error) => console.error("Error saving event:", error));
     });
+
+    function deleteEvent(id) {
+        if (!confirm("¿Estás seguro de que deseas eliminar este evento?"))
+            return;
+
+        fetch(`/calendario/${id}`, {
+            method: "DELETE",
+            headers: {
+                "X-CSRF-TOKEN": document.querySelector('input[name="_token"]')
+                    .value,
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                    events = events.filter((e) => e.id != id);
+                    renderCalendar();
+                    closeModalFunc();
+                }
+            })
+            .catch((error) => console.error("Error deleting event:", error));
+    }
 
     // Initial load
     fetchEvents();
