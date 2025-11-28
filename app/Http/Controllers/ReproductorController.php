@@ -9,7 +9,7 @@ class ReproductorController extends Controller
     public function index()
     {
         $campanas = \App\Models\Campana::where('estado', 'activa')->withCount('audios')->get();
-        return view('modulos.reproductor.index', compact('campanas'));
+        return view('modulos.reproductor.interfaz', compact('campanas'));
     }
 
     public function getAudios($campanaId)
