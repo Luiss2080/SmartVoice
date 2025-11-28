@@ -6,7 +6,7 @@
     
     <ul class="nav-list">
         <li class="nav-item">
-            <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">
+            <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                 <i class="fa-solid fa-grid-2 nav-icon"></i>
                 <span>Dashboard</span>
             </a>
