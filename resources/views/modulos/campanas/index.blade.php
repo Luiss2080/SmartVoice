@@ -3,6 +3,10 @@
 @section('title', 'Campañas - SmartVoice')
 @section('header', 'Gestión de Campañas')
 
+@push('styles')
+    @vite(['resources/css/campanas/index.css'])
+@endpush
+
 @push('scripts')
     @vite(['resources/js/campanas/index.js'])
 @endpush
