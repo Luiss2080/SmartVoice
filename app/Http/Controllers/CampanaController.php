@@ -37,6 +37,28 @@ class CampanaController extends Controller
         return view('modulos.campanas.show', compact('campana'));
     }
 
+    public function edit($id)
+    {
+        $campana = \App\Models\Campana::findOrFail($id);
+        return view('modulos.campanas.edit', compact('campana'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'nullable|string',
+            'fecha_inicio' => 'required|date',
+            'fecha_fin' => 'required|date|after_or_equal:fecha_inicio',
+            'estado' => 'required|in:activo,inactivo,borrador',
+        ]);
+
+        $campana = \App\Models\Campana::findOrFail($id);
+        $campana->update($request->all());
+
+        return redirect()->route('campanas.index')->with('success', 'Campaña actualizada exitosamente.');
+    }
+
     public function destroy($id)
     {
         $campana = \App\Models\Campana::findOrFail($id);

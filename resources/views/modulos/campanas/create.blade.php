@@ -7,10 +7,14 @@
     @vite(['resources/css/campanas/create.css'])
 @endpush
 
+@push('scripts')
+    @vite(['resources/js/campanas/form.js'])
+@endpush
+
 @section('content')
 <div class="card create-card">
     <div class="card-body" style="padding: 30px;">
-        <form action="{{ route('campanas.store') }}" method="POST">
+        <form action="{{ route('campanas.store') }}" method="POST" id="campaignForm">
             @csrf
             
             <div class="form-section">
@@ -26,11 +30,11 @@
             <div class="form-grid-2">
                 <div>
                     <label class="form-label">Fecha Inicio</label>
-                    <input type="date" name="fecha_inicio" class="form-control form-input" required>
+                    <input type="date" name="fecha_inicio" id="fecha_inicio" class="form-control form-input" required>
                 </div>
                 <div>
                     <label class="form-label">Fecha Fin</label>
-                    <input type="date" name="fecha_fin" class="form-control form-input" required>
+                    <input type="date" name="fecha_fin" id="fecha_fin" class="form-control form-input" required>
                 </div>
             </div>
 

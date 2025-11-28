@@ -3,8 +3,8 @@
 @section('title', 'Campañas - SmartVoice')
 @section('header', 'Gestión de Campañas')
 
-@push('styles')
-    @vite(['resources/css/campanas/index.css'])
+@push('scripts')
+    @vite(['resources/js/campanas/index.js'])
 @endpush
 
 @section('content')
@@ -66,7 +66,10 @@
                                 <a href="{{ route('campanas.show', $campana->id) }}" class="btn-icon btn-action-view" title="Ver Detalles">
                                     <i class="fa-solid fa-eye"></i>
                                 </a>
-                                <form action="{{ route('campanas.destroy', $campana->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar esta campaña?');">
+                                <a href="{{ route('campanas.edit', $campana->id) }}" class="btn-icon btn-action-view" title="Editar" style="color: var(--primary-color);">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                                <form action="{{ route('campanas.destroy', $campana->id) }}" method="POST" class="delete-form">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn-icon btn-action-delete" title="Eliminar">
