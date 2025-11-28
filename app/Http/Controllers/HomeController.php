@@ -30,6 +30,6 @@ class HomeController extends Controller
         $recentCampanas = \App\Models\Campana::latest()->take(5)->get();
         $recentAudios = \App\Models\Audio::with('campana')->latest()->take(5)->get();
 
-        return view('home', compact('totalCampanas', 'totalAudios', 'totalUsuarios', 'recentCampanas', 'recentAudios'));
+        return view('dashboard', compact('totalCampanas', 'totalAudios', 'totalUsuarios', 'recentCampanas', 'recentAudios'));
     }
 }

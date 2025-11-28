@@ -2,13 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return redirect()->route('login');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/campanas', [App\Http\Controllers\CampaignController::class, 'index'])->name('campanas.index');
