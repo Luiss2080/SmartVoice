@@ -12,31 +12,31 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('campanas.index') }}" class="nav-link {{ request()->routeIs('campanas.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-bullhorn nav-icon"></i>
                 <span>Campañas</span>
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('audios.index') }}" class="nav-link {{ request()->routeIs('audios.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-microphone-lines nav-icon"></i>
                 <span>Audios</span>
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('historial.index') }}" class="nav-link {{ request()->routeIs('historial.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-clock-rotate-left nav-icon"></i>
                 <span>Historial</span>
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('usuarios.index') }}" class="nav-link {{ request()->routeIs('usuarios.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-users nav-icon"></i>
                 <span>Usuarios</span>
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('configuracion.index') }}" class="nav-link {{ request()->routeIs('configuracion.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-gear nav-icon"></i>
                 <span>Configuración</span>
             </a>
