@@ -7,26 +7,60 @@
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">Usuarios del Sistema</h3>
-        <button class="btn btn-primary" style="width: auto;">Nuevo Usuario</button>
+        <button class="btn btn-primary" style="width: auto;">
+            <i class="fa-solid fa-user-plus"></i> Nuevo Usuario
+        </button>
     </div>
     <div class="card-body">
-        <p style="color: var(--text-light);">Administra los usuarios y sus permisos.</p>
-        <!-- Placeholder for table -->
-        <div style="margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 12px; text-align: center; color: var(--text-light);">
-            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px; padding: 10px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-                <div class="user-avatar" style="width: 40px; height: 40px;">L</div>
-                <div style="text-align: left;">
-                    <div style="font-weight: 600;">Luis Rocha</div>
-                    <div style="font-size: 0.8rem; color: var(--text-light);">LuisRocha@gmail.com</div>
-                </div>
+        @if($usuarios->isEmpty())
+            <div style="padding: 40px; text-align: center; color: var(--text-light);">
+                <i class="fa-solid fa-users" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.5;"></i>
+                <p>No hay usuarios registrados.</p>
             </div>
-            <div style="display: flex; align-items: center; gap: 15px; padding: 10px; background: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-                <div class="user-avatar" style="width: 40px; height: 40px; background: #FFD166; color: #333;">A</div>
-                <div style="text-align: left;">
-                    <div style="font-weight: 600;">Arely Nuñez</div>
-                    <div style="font-size: 0.8rem; color: var(--text-light);">ArelyNuñez@gmail.com</div>
-                </div>
+        @else
+            <div class="table-responsive">
+                <table class="table" style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="text-align: left; border-bottom: 2px solid #f0f0f0;">
+                            <th style="padding: 15px; color: var(--text-light); font-weight: 600;">Usuario</th>
+                            <th style="padding: 15px; color: var(--text-light); font-weight: 600;">Email</th>
+                            <th style="padding: 15px; color: var(--text-light); font-weight: 600;">Rol</th>
+                            <th style="padding: 15px; color: var(--text-light); font-weight: 600;">Fecha Registro</th>
+                            <th style="padding: 15px; color: var(--text-light); font-weight: 600; text-align: right;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($usuarios as $usuario)
+                        <tr style="border-bottom: 1px solid #f0f0f0;">
+                            <td style="padding: 15px;">
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.8rem;">
+                                        {{ substr($usuario->name, 0, 1) }}
+                                    </div>
+                                    <span style="font-weight: 500;">{{ $usuario->name }}</span>
+                                </div>
+                            </td>
+                            <td style="padding: 15px;">{{ $usuario->email }}</td>
+                            <td style="padding: 15px;">
+                                <span style="background: #eef0ff; color: var(--primary-color); padding: 5px 10px; border-radius: 20px; font-size: 0.85rem;">
+                                    Administrador
+                                </span>
+                            </td>
+                            <td style="padding: 15px;">{{ $usuario->created_at->format('d/m/Y') }}</td>
+                            <td style="padding: 15px; text-align: right;">
+                                <button style="background: none; border: none; color: var(--primary-color); cursor: pointer; margin-right: 10px;">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                                <button style="background: none; border: none; color: var(--accent-color); cursor: pointer;">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
-        </div>
+        @endif
     </div>
 </div>
+@endsection

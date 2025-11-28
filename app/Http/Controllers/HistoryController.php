@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\HistorialReproduccion;
 
 class HistoryController extends Controller
 {
     public function index()
     {
-        return view('modulos.historial.index');
+        $historial = HistorialReproduccion::all();
+        return view('modulos.historial.index', compact('historial'));
     }
 }
