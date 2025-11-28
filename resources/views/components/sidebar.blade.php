@@ -36,6 +36,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a href="{{ route('calendario.index') }}" class="nav-link {{ request()->routeIs('calendario.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-calendar-days nav-icon"></i>
+                <span>Calendario</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="{{ route('configuracion.index') }}" class="nav-link {{ request()->routeIs('configuracion.*') ? 'active' : '' }}">
                 <i class="fa-solid fa-gear nav-icon"></i>
                 <span>Configuración</span>
