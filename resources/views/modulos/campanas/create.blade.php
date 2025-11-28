@@ -4,7 +4,7 @@
 @section('header', 'Crear Nueva Campaña')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/campanas.css') }}">
+    @vite(['resources/css/campanas/create.css'])
 @endpush
 
 @section('content')
