@@ -23,6 +23,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $totalCampanas = \App\Models\Campana::count();
+        $totalAudios = \App\Models\Audio::count();
+        $totalUsuarios = \App\Models\User::count();
+        
+        $recentCampanas = \App\Models\Campana::latest()->take(5)->get();
+        $recentAudios = \App\Models\Audio::with('campana')->latest()->take(5)->get();
+
+        return view('home', compact('totalCampanas', 'totalAudios', 'totalUsuarios', 'recentCampanas', 'recentAudios'));
     }
 }
