@@ -13,10 +13,28 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name' => 'Admin SmartVoice',
-            'email' => 'admin@smartvoice.com',
-            'password' => Hash::make('password'),
-        ]);
+        User::firstOrCreate(
+            ['email' => 'admin@smartvoice.com'],
+            [
+                'name' => 'Admin SmartVoice',
+                'password' => Hash::make('password'),
+            ]
+        );
+
+        User::firstOrCreate(
+            ['email' => 'LuisRocha@gmail.com'],
+            [
+                'name' => 'Luis Rocha',
+                'password' => Hash::make('TeAmo4'),
+            ]
+        );
+
+        User::firstOrCreate(
+            ['email' => 'ArelyNuñez@gmail.com'],
+            [
+                'name' => 'Arely Nuñez',
+                'password' => Hash::make('TeAmo4'),
+            ]
+        );
     }
 }
