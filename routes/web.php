@@ -12,4 +12,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/historial', [App\Http\Controllers\HistoryController::class, 'index'])->name('historial.index');
     Route::get('/usuarios', [App\Http\Controllers\UserController::class, 'index'])->name('usuarios.index');
     Route::get('/configuracion', [App\Http\Controllers\SettingsController::class, 'index'])->name('configuracion.index');
+    
+    // Calendar Routes
+    Route::get('/calendario', [App\Http\Controllers\CalendarController::class, 'index'])->name('calendario.index');
+    Route::get('/calendario/events', [App\Http\Controllers\CalendarController::class, 'getEvents'])->name('calendario.events');
+    Route::post('/calendario/store', [App\Http\Controllers\CalendarController::class, 'store'])->name('calendario.store');
+    Route::delete('/calendario/{id}', [App\Http\Controllers\CalendarController::class, 'destroy'])->name('calendario.destroy');
 });
