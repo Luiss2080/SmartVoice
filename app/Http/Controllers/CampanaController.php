@@ -82,9 +82,10 @@ class CampanaController extends Controller
 
             $campana->audios()->create([
                 'nombre' => $request->nombre,
-                'ruta_archivo' => $path,
+                'archivo_path' => $path,
                 'duracion' => '00:00', // Placeholder, would need a library to get real duration
-                'estado' => 'activo',
+                'tamano' => number_format($file->getSize() / 1024, 2) . ' KB',
+                'formato' => $file->getClientOriginalExtension(),
             ]);
         }
 

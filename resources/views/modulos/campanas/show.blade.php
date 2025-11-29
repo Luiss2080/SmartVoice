@@ -51,7 +51,7 @@
                             <div class="audio-duration">{{ $audio->duracion ?: '--:--' }}</div>
                         </div>
                         <audio controls style="height: 30px; max-width: 200px;">
-                            <source src="{{ asset('storage/' . $audio->ruta_archivo) }}" type="audio/mpeg">
+                            <source src="{{ asset('storage/' . $audio->archivo_path) }}" type="audio/mpeg">
                             Tu navegador no soporta el elemento de audio.
                         </audio>
                     </li>

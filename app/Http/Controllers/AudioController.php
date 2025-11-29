@@ -23,7 +23,7 @@ class AudioController extends Controller
             $query->where('campana_id', $request->campana_id);
         }
 
-        $audios = $query->latest()->paginate(10);
+        $audios = $query->latest()->paginate(10)->withQueryString();
         $campanas = Campana::all();
 
         return view('modulos.audios.index', compact('audios', 'campanas'));
