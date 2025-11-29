@@ -1,0 +1,89 @@
+.user-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-empty-state {
+    padding: 40px;
+    text-align: center;
+    color: var(--text-light);
+}
+
+.user-empty-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.user-table th {
+    padding: 15px;
+    color: var(--text-light);
+    font-weight: 600;
+    text-align: left;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.user-table td {
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+    background-color: var(--primary-light, #eef0ff);
+    color: var(--primary-color, #4361ee);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.user-name {
+    font-weight: 500;
+}
+
+.role-badge {
+    background: #eef0ff;
+    color: var(--primary-color, #4361ee);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    display: inline-block;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.2s;
+}
+
+.action-btn:hover {
+    transform: scale(1.1);
+}
+
+.action-btn.edit {
+    color: var(--primary-color, #4361ee);
+    margin-right: 10px;
+}
+
+.action-btn.delete {
+    color: var(--accent-color, #ef476f);
+}
