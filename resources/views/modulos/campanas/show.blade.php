@@ -70,7 +70,7 @@
                 <div class="info-section">
                     <label class="info-label">Vigencia</label>
                     <div style="font-size: 0.95rem;">
-                        {{ $campana->fecha_inicio->format('d M Y') }} - {{ $campana->fecha_fin->format('d M Y') }}
+                        {{ $campana->fecha_inicio ? $campana->fecha_inicio->format('d M Y') : 'N/A' }} - {{ $campana->fecha_fin ? $campana->fecha_fin->format('d M Y') : 'N/A' }}
                     </div>
                 </div>
 
