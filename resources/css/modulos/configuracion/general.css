@@ -1,0 +1,194 @@
+/* Configuration Styles */
+.config-card {
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.config-layout {
+    display: flex;
+    min-height: 500px;
+}
+
+/* Sidebar */
+.config-sidebar {
+    width: 250px;
+    background: #f8f9fa;
+    border-right: 1px solid #eee;
+    padding: 30px 20px;
+}
+
+.config-nav-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--text-light);
+    font-weight: 700;
+    margin-bottom: 15px;
+    padding-left: 10px;
+}
+
+.config-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.config-nav li {
+    margin-bottom: 5px;
+}
+
+.config-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.config-nav-link:hover {
+    background: #eef0ff;
+    color: var(--primary-color);
+}
+
+.config-nav-link.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Content */
+.config-content {
+    flex: 1;
+    padding: 40px;
+}
+
+.config-page-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 10px;
+}
+
+.config-page-subtitle {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+}
+
+/* Grid & Items */
+.config-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.config-item {
+    margin-bottom: 25px;
+}
+
+.config-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-color);
+}
+
+.config-desc {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+.config-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+.config-input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* Toggle Switch */
+.switch-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #fcfcfc;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--primary-color);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--primary-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+/* Alerts */
+.alert {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.alert-success {
+    background: #d4edda;
+    color: #155724;
+}
+
+.alert-error {
+    background: #ffe5e5;
+    color: #ff6b6b;
+}
