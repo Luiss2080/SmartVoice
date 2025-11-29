@@ -11,6 +11,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/audios', [App\Http\Controllers\AudioController::class, 'index'])->name('audios.index');
     Route::get('/historial', [App\Http\Controllers\HistoryController::class, 'index'])->name('historial.index');
     Route::get('/usuarios', [App\Http\Controllers\UserController::class, 'index'])->name('usuarios.index');
+    Route::post('/users', [App\Http\Controllers\UserController::class, 'store'])->name('users.store');
+    Route::put('/users/{id}', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
+    Route::delete('/users/{id}', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
     Route::get('/configuracion', [App\Http\Controllers\SettingsController::class, 'index'])->name('configuracion.index');
     Route::put('/configuracion', [App\Http\Controllers\SettingsController::class, 'update'])->name('configuracion.update');
     
