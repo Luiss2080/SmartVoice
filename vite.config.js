@@ -29,6 +29,7 @@ export default defineConfig({
                 "resources/js/auth.js",
                 "resources/js/campanas/index.js",
                 "resources/js/campanas/form.js",
+                "resources/js/perfil/edit.js",
             ],
             refresh: true,
         }),

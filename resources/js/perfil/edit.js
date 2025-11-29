@@ -1,19 +1,22 @@
-function previewImage(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
+document.addEventListener("DOMContentLoaded", function () {
+    const photoInput = document.getElementById("photo");
+    const avatarPreview = document.getElementById("avatar-preview");
+    const avatarPlaceholder = document.getElementById("avatar-placeholder");
 
-        reader.onload = function (e) {
-            const preview = document.getElementById("avatar-preview");
-            const placeholder = document.getElementById("avatar-placeholder");
-
-            preview.src = e.target.result;
-            preview.style.display = "block";
-            if (placeholder) placeholder.style.display = "none";
-        };
-
-        reader.readAsDataURL(input.files[0]);
+    if (photoInput) {
+        photoInput.addEventListener("change", function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    avatarPreview.src = e.target.result;
+                    avatarPreview.style.display = "block";
+                    if (avatarPlaceholder) {
+                        avatarPlaceholder.style.display = "none";
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        });
     }
-}
-
-// Attach to window so it can be called from HTML onclick
-window.previewImage = previewImage;
+});

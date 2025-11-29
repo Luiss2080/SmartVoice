@@ -2,16 +2,21 @@
 
 @section('title', 'Mi Perfil - SmartVoice')
 @section('header', 'Mi Perfil')
+@extends('layouts.app')
+
+@section('title', 'Mi Perfil - SmartVoice')
+@section('header', 'Mi Perfil')
 
 @push('styles')
     @vite(['resources/css/perfil/edit.css'])
 @endpush
 
 @section('content')
-<div class="card profile-card">
-    <div class="card-body" style="padding: 40px;">
+<div class="profile-edit-container animate-fade-in">
+    <div class="profile-edit-card">
         @if(session('success'))
-            <div class="alert alert-success" style="background: #d4edda; color: #155724; padding: 15px; border-radius: 8px; margin-bottom: 30px;">
+            <div class="alert alert-success" style="background: #d4edda; color: #155724; padding: 15px; border-radius: 12px; margin-bottom: 30px; display: flex; align-items: center; gap: 10px;">
+                <i class="fa-solid fa-check-circle"></i>
                 {{ session('success') }}
             </div>
         @endif
@@ -20,7 +25,7 @@
             @csrf
             @method('PUT')
 
-            <div class="profile-header">
+            <div class="profile-edit-header">
                 <div class="profile-avatar-upload">
                     @if($user->profile_photo_path)
                         <img src="{{ asset('storage/' . $user->profile_photo_path) }}" alt="Profile" class="avatar-preview" id="avatar-preview">
@@ -34,13 +39,10 @@
                     <label for="photo" class="upload-btn" title="Cambiar foto">
                         <i class="fa-solid fa-camera"></i>
                     </label>
-                    <input type="file" name="photo" id="photo" accept="image/*" style="display: none;" onchange="previewImage(this)">
+                    <input type="file" name="photo" id="photo" accept="image/*" style="display: none;">
                 </div>
-                <div class="profile-info">
-                    <h2>{{ $user->name }}</h2>
-                    <p>{{ $user->email }}</p>
-                    <p style="font-size: 0.85rem; margin-top: 5px; color: #888;">Administrador</p>
-                </div>
+                <h2 style="font-size: 1.5rem; margin-bottom: 5px;">Editar Perfil</h2>
+                <p style="color: var(--text-light);">Actualiza tu información personal</p>
             </div>
 
             <div class="form-grid">
@@ -66,6 +68,7 @@
             </div>
 
             <div class="form-actions">
+                <a href="{{ route('profile.show') }}" class="btn-cancel">Cancelar</a>
                 <button type="submit" class="btn btn-primary">
                     <i class="fa-solid fa-save" style="margin-right: 8px;"></i> Guardar Cambios
                 </button>
@@ -73,8 +76,8 @@
         </form>
     </div>
 </div>
+@endsection
 
 @push('scripts')
     @vite(['resources/js/perfil/edit.js'])
 @endpush
-@endsection
