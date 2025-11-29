@@ -1,7 +1,6 @@
-<aside class="sidebar">
+<aside class="sidebar animate-slide-in">
     <div class="sidebar-brand">
-        <i class="fa-solid fa-layer-group"></i>
-        <span>SmartVoice</span>
+        <img src="{{ asset('img/logo.png') }}" alt="SmartVoice Logo">
     </div>
     
     <ul class="nav-list">
