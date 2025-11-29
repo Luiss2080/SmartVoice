@@ -25,6 +25,7 @@ export default defineConfig({
                 "resources/css/reproductor/controles.css",
                 "resources/css/configuracion/general.css",
                 "resources/css/configuracion/usuarios.css",
+                "resources/css/usuarios/index.css",
                 "resources/js/auth.js",
                 "resources/js/campanas/index.js",
                 "resources/js/campanas/form.js",
