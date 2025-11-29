@@ -11,7 +11,10 @@ class UserController extends Controller
     public function index()
     {
         $usuarios = User::all();
-        return view('modulos.configuracion.usuarios', compact('usuarios'));
+        $totalUsuarios = User::count();
+        $nuevosUsuarios = User::where('created_at', '>=', now()->startOfMonth())->count();
+        
+        return view('modulos.configuracion.usuarios', compact('usuarios', 'totalUsuarios', 'nuevosUsuarios'));
     }
 
     public function store(Request $request)
