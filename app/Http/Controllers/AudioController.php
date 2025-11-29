@@ -40,7 +40,7 @@ class AudioController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:255',
             'campana_id' => 'required|exists:campanas,id',
-            'audio_file' => 'required|file|mimes:mp3,wav,m4a,ogg|max:20480', // 20MB
+            'audio_file' => 'required|file|mimes:mp3,wav,m4a,ogg,opus|max:20480', // 20MB
             'descripcion' => 'nullable|string',
         ]);
 
@@ -90,7 +90,7 @@ class AudioController extends Controller
             'nombre' => 'required|string|max:255',
             'campana_id' => 'required|exists:campanas,id',
             'descripcion' => 'nullable|string',
-            'audio_file' => 'nullable|file|mimes:mp3,wav,m4a,ogg|max:20480',
+            'audio_file' => 'nullable|file|mimes:mp3,wav,m4a,ogg,opus|max:20480',
         ]);
 
         $data = [

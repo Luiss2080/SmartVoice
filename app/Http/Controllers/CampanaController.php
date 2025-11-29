@@ -70,7 +70,7 @@ class CampanaController extends Controller
     public function uploadAudio(Request $request, $id)
     {
         $request->validate([
-            'audio' => 'required|file|mimes:mp3,wav|max:10240', // 10MB max
+            'audio' => 'required|file|mimes:mp3,wav,ogg,opus|max:10240', // 10MB max
             'nombre' => 'required|string|max:255',
         ]);
 
