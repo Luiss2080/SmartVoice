@@ -12,6 +12,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/historial', [App\Http\Controllers\HistoryController::class, 'index'])->name('historial.index');
     Route::get('/usuarios', [App\Http\Controllers\UserController::class, 'index'])->name('usuarios.index');
     Route::get('/configuracion', [App\Http\Controllers\SettingsController::class, 'index'])->name('configuracion.index');
+    Route::put('/configuracion', [App\Http\Controllers\SettingsController::class, 'update'])->name('configuracion.update');
     
     // Profile Routes
     Route::get('/perfil/ver', [App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
