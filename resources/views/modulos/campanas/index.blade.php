@@ -80,7 +80,7 @@
                                 <form action="{{ route('campanas.destroy', $campana->id) }}" method="POST" class="delete-form">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn-icon btn-action-delete" title="Eliminar">
+                                    <button type="button" class="btn-icon btn-action-delete" title="Eliminar" onclick="confirmDelete(this)">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>
@@ -102,4 +102,23 @@
         </div>
     </div>
 </div>
+
+<script>
+    function confirmDelete(btn) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "No podrás revertir esta acción",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                btn.closest('form').submit();
+            }
+        })
+    }
+</script>
 @endsection

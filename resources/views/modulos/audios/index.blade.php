@@ -88,10 +88,10 @@
                                 <a href="{{ route('audios.edit', $audio->id) }}" class="btn-action" title="Editar">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
-                                <form action="{{ route('audios.destroy', $audio->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de eliminar este audio?');" style="display: inline;">
+                                <form action="{{ route('audios.destroy', $audio->id) }}" method="POST" class="delete-form" style="display: inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn-action delete" title="Eliminar">
+                                    <button type="button" class="btn-action delete" title="Eliminar" onclick="confirmDelete(this)">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>
@@ -119,6 +119,23 @@
 </div>
 
 <script>
+    function confirmDelete(btn) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "No podrás revertir esta acción",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                btn.closest('form').submit();
+            }
+        })
+    }
+
     let currentAudio = null;
     let currentBtn = null;
 
