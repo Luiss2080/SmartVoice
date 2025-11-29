@@ -4,7 +4,7 @@
 @section('header', 'Configuración del Sistema')
 
 @push('styles')
-    @vite(['resources/css/configuracion/index.css'])
+    @vite(['resources/css/modulos/configuracion/general.css', 'resources/css/modulos/configuracion/usuarios.css'])
 @endpush
 
 @section('content')
