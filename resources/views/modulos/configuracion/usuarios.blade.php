@@ -1,6 +1,36 @@
 @extends('modulos.configuracion.layout')
 
 @section('config-content')
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon users">
+                <i class="fa-solid fa-users"></i>
+            </div>
+            <div class="stat-info">
+                <div class="stat-value">{{ $totalUsuarios }}</div>
+                <div class="stat-label">Total Usuarios</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon new">
+                <i class="fa-solid fa-user-plus"></i>
+            </div>
+            <div class="stat-info">
+                <div class="stat-value">{{ $nuevosUsuarios }}</div>
+                <div class="stat-label">Nuevos (Mes)</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon active">
+                <i class="fa-solid fa-user-check"></i>
+            </div>
+            <div class="stat-info">
+                <div class="stat-value">{{ $totalUsuarios }}</div>
+                <div class="stat-label">Usuarios Activos</div>
+            </div>
+        </div>
+    </div>
+
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
         <div>
             <h2 class="config-page-title" style="margin-bottom: 5px;">Gestión de Usuarios</h2>
