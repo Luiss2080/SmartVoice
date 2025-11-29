@@ -13,10 +13,12 @@ class AudioController extends Controller
     {
         $query = Audio::with('campana');
 
-        if ($request->has('search')) {
+        if ($request->filled('search')) {
             $search = $request->search;
-            $query->where('nombre', 'like', "%{$search}%")
+            $query->where(function($q) use ($search) {
+                $q->where('nombre', 'like', "%{$search}%")
                   ->orWhere('descripcion', 'like', "%{$search}%");
+            });
         }
 
         if ($request->has('campana_id') && $request->campana_id != '') {
