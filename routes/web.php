@@ -9,6 +9,11 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::get('/campanas', [App\Http\Controllers\CampaignController::class, 'index'])->name('campanas.index');
     Route::get('/audios', [App\Http\Controllers\AudioController::class, 'index'])->name('audios.index');
+    Route::get('/audios/crear', [App\Http\Controllers\AudioController::class, 'create'])->name('audios.create');
+    Route::post('/audios', [App\Http\Controllers\AudioController::class, 'store'])->name('audios.store');
+    Route::get('/audios/{id}/editar', [App\Http\Controllers\AudioController::class, 'edit'])->name('audios.edit');
+    Route::put('/audios/{id}', [App\Http\Controllers\AudioController::class, 'update'])->name('audios.update');
+    Route::delete('/audios/{id}', [App\Http\Controllers\AudioController::class, 'destroy'])->name('audios.destroy');
     Route::get('/historial', [App\Http\Controllers\HistoryController::class, 'index'])->name('historial.index');
     Route::get('/usuarios', [App\Http\Controllers\UserController::class, 'index'])->name('usuarios.index');
     Route::post('/users', [App\Http\Controllers\UserController::class, 'store'])->name('users.store');
