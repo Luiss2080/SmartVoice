@@ -14,6 +14,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/audios/{id}/editar', [App\Http\Controllers\AudioController::class, 'edit'])->name('audios.edit');
     Route::put('/audios/{id}', [App\Http\Controllers\AudioController::class, 'update'])->name('audios.update');
     Route::delete('/audios/{id}', [App\Http\Controllers\AudioController::class, 'destroy'])->name('audios.destroy');
+    Route::patch('/audios/{id}/duration', [App\Http\Controllers\AudioController::class, 'updateDuration'])->name('audios.updateDuration');
     Route::get('/historial', [App\Http\Controllers\HistoryController::class, 'index'])->name('historial.index');
     Route::get('/usuarios', [App\Http\Controllers\UserController::class, 'index'])->name('usuarios.index');
     Route::post('/users', [App\Http\Controllers\UserController::class, 'store'])->name('users.store');

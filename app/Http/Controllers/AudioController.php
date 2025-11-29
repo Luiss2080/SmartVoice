@@ -141,4 +141,16 @@ class AudioController extends Controller
 
         return redirect()->route('audios.index')->with('success', 'Audio eliminado exitosamente.');
     }
+
+    public function updateDuration(Request $request, $id)
+    {
+        $request->validate([
+            'duration' => 'required|string'
+        ]);
+
+        $audio = Audio::findOrFail($id);
+        $audio->update(['duracion' => $request->duration]);
+
+        return response()->json(['success' => true]);
+    }
 }
