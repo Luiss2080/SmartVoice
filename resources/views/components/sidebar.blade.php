@@ -7,7 +7,7 @@
     <ul class="nav-list">
         <li class="nav-item">
             <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                <i class="fa-solid fa-grid-2 nav-icon"></i>
+                <i class="fa-solid fa-house nav-icon"></i>
                 <span>Dashboard</span>
             </a>
         </li>
