@@ -2,10 +2,7 @@
 
 @section('title', 'Mi Perfil - SmartVoice')
 @section('header', 'Mi Perfil')
-@extends('layouts.app')
 
-@section('title', 'Mi Perfil - SmartVoice')
-@section('header', 'Mi Perfil')
 
 @push('styles')
     @vite(['resources/css/perfil/edit.css'])
