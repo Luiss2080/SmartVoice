@@ -74,22 +74,7 @@
     </div>
 </div>
 
-<script>
-    function previewImage(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            
-            reader.onload = function(e) {
-                const preview = document.getElementById('avatar-preview');
-                const placeholder = document.getElementById('avatar-placeholder');
-                
-                preview.src = e.target.result;
-                preview.style.display = 'block';
-                if (placeholder) placeholder.style.display = 'none';
-            }
-            
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-</script>
+@push('scripts')
+    @vite(['resources/js/perfil/edit.js'])
+@endpush
 @endsection
