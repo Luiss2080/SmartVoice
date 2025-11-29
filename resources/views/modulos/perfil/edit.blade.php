@@ -65,12 +65,12 @@
 
                 <div class="form-group">
                     <label class="form-label">Nueva Contraseña</label>
-                    <input type="password" name="password" class="form-input" placeholder="Dejar vacío para mantener">
+                    <input type="password" name="password" class="form-input" placeholder="Dejar vacío para mantener" autocomplete="new-password">
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Confirmar Contraseña</label>
-                    <input type="password" name="password_confirmation" class="form-input" placeholder="Confirmar nueva contraseña">
+                    <input type="password" name="password_confirmation" class="form-input" placeholder="Confirmar nueva contraseña" autocomplete="new-password">
                 </div>
             </div>
 
