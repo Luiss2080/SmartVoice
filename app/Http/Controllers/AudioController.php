@@ -37,6 +37,18 @@ class AudioController extends Controller
         return view('modulos.audios.create', compact('campanas'));
     }
 
+    private function getDuration($path)
+    {
+        $getID3 = new \getID3;
+        $file = $getID3->analyze(storage_path('app/public/' . $path));
+        
+        if (isset($file['playtime_string'])) {
+            return $file['playtime_string'];
+        }
+        
+        return '00:00';
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -61,6 +73,8 @@ class AudioController extends Controller
                 $sizeFormatted = number_format($size / 1024, 2) . ' KB';
             }
 
+            $duration = $this->getDuration($path);
+
             Audio::create([
                 'nombre' => $request->nombre,
                 'campana_id' => $request->campana_id,
@@ -68,7 +82,7 @@ class AudioController extends Controller
                 'archivo_path' => $path,
                 'tamano' => $sizeFormatted,
                 'formato' => $extension,
-                'duracion' => '00:00', // Placeholder
+                'duracion' => $duration,
             ]);
 
             return redirect()->route('audios.index')->with('success', 'Audio subido exitosamente.');
