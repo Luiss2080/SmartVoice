@@ -7,7 +7,7 @@
             <input type="text" class="search-input" placeholder="Buscar...">
         </div>
         
-        <a href="{{ route('profile.edit') }}" class="user-profile" style="text-decoration: none; color: inherit;">
+        <a href="{{ route('profile.show') }}" class="user-profile" style="text-decoration: none; color: inherit;">
             <div class="user-info">
                 <div class="user-name">{{ Auth::user()->name ?? 'Usuario' }}</div>
                 <div class="user-role">Administrador</div>

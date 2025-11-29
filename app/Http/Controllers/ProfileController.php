@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
+    public function show()
+    {
+        return view('modulos.perfil.show', ['user' => auth()->user()]);
+    }
+
     public function edit()
     {
         return view('modulos.perfil.edit', ['user' => auth()->user()]);

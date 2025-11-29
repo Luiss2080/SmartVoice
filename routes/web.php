@@ -14,6 +14,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/configuracion', [App\Http\Controllers\SettingsController::class, 'index'])->name('configuracion.index');
     
     // Profile Routes
+    Route::get('/perfil/ver', [App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
     Route::get('/perfil', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/perfil', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
     
