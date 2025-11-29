@@ -13,6 +13,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/usuarios', [App\Http\Controllers\UserController::class, 'index'])->name('usuarios.index');
     Route::get('/configuracion', [App\Http\Controllers\SettingsController::class, 'index'])->name('configuracion.index');
     
+    // Profile Routes
+    Route::get('/perfil', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/perfil', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    
     // Calendar Routes
     Route::get('/calendario', [App\Http\Controllers\CalendarController::class, 'index'])->name('calendario.index');
     Route::get('/calendario/events', [App\Http\Controllers\CalendarController::class, 'getEvents'])->name('calendario.events');
