@@ -78,7 +78,7 @@
                                 <button class="play-btn" onclick="playAudio(this, '{{ asset('storage/' . $audio->archivo_path) }}')">
                                     <i class="fa-solid fa-play"></i>
                                 </button>
-                                <span style="font-size: 0.85rem; font-family: monospace;">{{ $audio->duracion ?: '--:--' }}</span>
+                                <span class="audio-duration" data-id="{{ $audio->id }}" data-src="{{ asset('storage/' . $audio->archivo_path) }}" style="font-size: 0.85rem; font-family: monospace;">{{ $audio->duracion ?: '00:00' }}</span>
                             </div>
                         </td>
                         <td style="font-size: 0.9rem; color: #666;">{{ $audio->tamano }}</td>
@@ -165,5 +165,45 @@
             };
         }
     }
+
+    // Auto-calculate duration for audios with 00:00
+    document.addEventListener('DOMContentLoaded', function() {
+        const durationSpans = document.querySelectorAll('.audio-duration');
+        
+        durationSpans.forEach(span => {
+            if (span.textContent.trim() === '00:00' || span.textContent.trim() === '--:--') {
+                const audioId = span.dataset.id;
+                const audioSrc = span.dataset.src;
+                
+                if (audioSrc) {
+                    const tempAudio = new Audio(audioSrc);
+                    tempAudio.addEventListener('loadedmetadata', function() {
+                        const duration = tempAudio.duration;
+                        if (duration === Infinity || isNaN(duration)) return;
+                        
+                        const minutes = Math.floor(duration / 60);
+                        const seconds = Math.floor(duration % 60);
+                        const formattedDuration = 
+                            (minutes < 10 ? '0' : '') + minutes + ':' + 
+                            (seconds < 10 ? '0' : '') + seconds;
+                        
+                        span.textContent = formattedDuration;
+                        
+                        // Update in database
+                        if (audioId) {
+                            fetch(`/audios/${audioId}/duration`, {
+                                method: 'PATCH',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                                },
+                                body: JSON.stringify({ duration: formattedDuration })
+                            }).catch(err => console.error('Error updating duration:', err));
+                        }
+                    });
+                }
+            }
+        });
+    });
 </script>
 @endsection
