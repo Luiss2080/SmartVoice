@@ -4,7 +4,7 @@
 @section('header', 'Calendario de Eventos')
 
 @push('styles')
-    @vite(['resources/css/calendar.css'])
+    @vite(['resources/css/calendario/index.css'])
 @endpush
 
 @section('content')
