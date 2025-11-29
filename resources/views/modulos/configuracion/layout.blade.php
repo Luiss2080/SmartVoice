@@ -16,17 +16,17 @@
                 <div class="config-nav-title">Ajustes</div>
                 <ul class="config-nav">
                     <li>
-                        <a href="{{ route('configuracion.general') }}" class="config-nav-link {{ request()->routeIs('configuracion.general') ? 'active' : '' }}">
+                        <a href="{{ route('configuracion.index') }}" class="config-nav-link {{ request()->routeIs('configuracion.index') ? 'active' : '' }}">
                             <i class="fa-solid fa-sliders"></i> General
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('configuracion.reproduccion') }}" class="config-nav-link {{ request()->routeIs('configuracion.reproduccion') ? 'active' : '' }}">
+                        <a href="{{ route('configuracion.index') }}#reproduccion" class="config-nav-link">
                             <i class="fa-solid fa-music"></i> Reproducción
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('configuracion.usuarios') }}" class="config-nav-link {{ request()->routeIs('configuracion.usuarios') ? 'active' : '' }}">
+                        <a href="{{ route('usuarios.index') }}" class="config-nav-link {{ request()->routeIs('usuarios.*') ? 'active' : '' }}">
                             <i class="fa-solid fa-users"></i> Usuarios
                         </a>
                     </li>
