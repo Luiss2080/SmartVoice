@@ -4,7 +4,7 @@
 @section('header', 'Reproductor')
 
 @push('styles')
-    @vite(['resources/css/reproductor/index.css'])
+    @vite(['resources/css/reproductor/interfaz.css'])
 @endpush
 
 @section('content')

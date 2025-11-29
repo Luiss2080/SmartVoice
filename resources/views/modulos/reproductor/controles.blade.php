@@ -1,3 +1,7 @@
+@push('styles')
+    @vite(['resources/css/reproductor/controles.css'])
+@endpush
+
 <!-- Bottom Player Controls -->
 <div class="player-controls-bar">
     <!-- Now Playing -->

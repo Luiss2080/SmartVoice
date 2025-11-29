@@ -1,3 +1,7 @@
+@push('styles')
+    @vite(['resources/css/reproductor/lista.css'])
+@endpush
+
 <!-- Sidebar: Campaigns -->
 <div class="player-sidebar">
     <div class="sidebar-header">
