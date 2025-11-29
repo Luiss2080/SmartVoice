@@ -1,6 +1,7 @@
 <aside class="sidebar animate-slide-in">
     <div class="sidebar-brand">
         <img src="{{ asset('img/logo.png') }}" alt="SmartVoice Logo">
+        <span class="brand-text">SmartVoice</span>
     </div>
     
     <ul class="nav-list">

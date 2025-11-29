@@ -1,5 +1,5 @@
 <header class="header">
-    <h1 class="page-title animate-fade-in">{{ $title ?? 'Dashboard' }}</h1>
+    <h1 class="page-title animate-fade-in">@yield('header', 'Dashboard')</h1>
     
     <div class="header-actions animate-fade-in delay-100">
         <div class="search-bar">
